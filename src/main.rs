@@ -1,8 +1,17 @@
-// use std::io; // <- importando biblioteca de io de dentro de std
+use std::io;
+use rand::Rng;
 fn main() {
-    let name: &str = "taylor";
-    // let mut name1 &str = "taylor mutavel";
-    // let mut vazio = String::new() ;
-    println!("Thats my first script in RUST, and I'm {}", name);
-    // io::stdin().read_line(&mut vazio).expect("Falha ao ler entrada");
+    hello_world();
+    say_user_input();
+}
+
+fn hello_world(){
+    println!("hello world");
+}
+
+fn say_user_input(){
+    let mut user_input = String::new();
+    io::stdin().read_line(&mut user_input).expect("err");
+    println!("{user_input}");
+
 }
