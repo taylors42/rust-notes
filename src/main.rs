@@ -1,9 +1,65 @@
 use std::io;
 use rand::Rng;
 fn main() {
-    sum_all_digits();
+    media_aluno();
 }
 
+fn media_aluno(){
+    let mut user_input = String::new();
+    println!("Quantas medias serão analisadas?\n");
+    io::stdin()
+    .read_line(&mut user_input)
+    .expect("err");
+    let mut num: i32 = convert_to_int(&user_input);
+    println!("{num}");
+    let mut notas: Vec<i32> = Vec::new();
+    while num >= 1 {
+        let mut nota1 = String::new();
+        let mut nota2 =  String::new();
+        let mut nota3 = String::new();
+
+        println!("Digite a primeira nota \n");
+        io::stdin().read_line(&mut nota1).expect("err");
+        println!("Digite a segunda nota \n");
+        io::stdin().read_line(&mut nota2).expect("err");
+        println!("Digite a terceira nota \n");
+        io::stdin().read_line(&mut nota3).expect("err");
+
+        let int_nota1 = convert_to_int(&nota1);
+        let int_nota2 = convert_to_int(&nota2);
+        let int_nota3 = convert_to_int(&nota3);
+
+        notas.push((int_nota1 + int_nota2 + int_nota3) / 3);
+        num -= 1;
+    }
+    println!("essas foram as medias das notas:");
+    for index in notas {
+        if index < 3 {
+            println!("a nota foi {} e foi reprovada", index);
+        }
+        else {
+            println!("a nota foi {} e foi aprovada", index);
+        }
+    }
+
+}
+
+fn calc_factorial(){
+    let mut factorial_input = String::new();
+    println!("Write a number:");
+    io::stdin()
+    .read_line(&mut factorial_input)
+    .expect("Error reading input");
+
+    let num: i32 = convert_to_int(&factorial_input);
+    let mut factorial: i32 = 1;
+
+    for i in 1..=num {
+        factorial *= i;
+    }
+
+    println!("{}", factorial);
+}
 fn hello_world(){
     println!("hello world");
 }
