@@ -16,30 +16,32 @@ fn mdc(){
     .expect("err");
     let primos: [i32; 8] = [2, 3, 5, 7, 11, 13, 17, 19];
     let mut divisores: Vec<i32> = Vec::new();
-    let mut result: i32 = 0;
     let mut div1: i32 = convert_to_int(&user_input);
     let mut div2: i32 = convert_to_int(&second_user_input);
     while div1 > 1 || div2 > 1 {
         for index in &primos{
-            if div1 % index == 0 && div2 % index == 0 && div1 > 0 && div2 > 0 {
+            if div1 % index == 0 && div2 % index == 0 && div1 != 0 && div2 != 0 {
                 divisores.push(*index);
                 div1 = div1 / index;
                 div2 = div2 / index;
             }
+
             else if div1 % index == 0 && div1 > 0{
                 div1 = div1 / index;
             }
+
             else if div2 % index == 0 && div2 > 0{
                 div2 = div2 / index;
             }
         }
     }
     println!("######################");
-    for i in 1..divisores.len(){
-        result = divisores[i - 1] * divisores[i];
+    let mut multiplicador: i32 = 1;
+    for i in 0..divisores.len(){
+    multiplicador *= divisores[i];
     }
-    println!("{}", result)
-}
+    println!("Maximo divisor comum = {multiplicador}");
+    }
 
 fn media_aluno(){
     let mut user_input = String::new();
